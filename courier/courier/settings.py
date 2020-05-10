@@ -131,4 +131,6 @@ LOGIN_REDIRECT_URL = '/success'
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 HASHID_FIELD_SALT = "a long and secure salt value that is not the same as SECRET_KEY"
 
+HASHID_FIELD_SALT = "OK95DO55WORK66"
+
 
