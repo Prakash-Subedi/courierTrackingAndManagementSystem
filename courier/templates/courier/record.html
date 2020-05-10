@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Courier Form</title>
+
+
+      <form class="col-xs-4 col-xs-offset-4 col-md-6 "  method="POST" action="">
+        <div class="p-3 mb-2 bg-info text-white text-center "><h2>Courier Form</h2></div>
+    {% csrf_token %}
+  {{ form|crispy }}
+        <input class= "btn btn-outline-info"type="submit">
+    <br><br>
+
+        <div class="alert alert-info" role="alert">
+            Cancel registration process and <a href="{%url 'success' %}" >GO BACK</a> </div>
+    </form>
+  </div>
+</head>
+<body>
+
+</body>
+</html>
