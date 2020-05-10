@@ -9,40 +9,17 @@
 
     <title>Register</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+<!--    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">-->
 
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css" rel="stylesheet">
+<!--    <link href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css" rel="stylesheet">-->
   </head>
 
-<form method="POST" action="">
-  <br><br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br><br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+<form class="col-xs-4 col-xs-offset-4 col-md-6" method="POST" action="">
+
   <div class="p-3 mb-2 bg-info text-white text-center "><h2>Register New Account</h2></div>
   {% csrf_token %}
   {{ form|crispy }}
@@ -54,7 +31,9 @@
   <br>
   <div class="alert alert-info" role="alert">
     Cancel registration process and <a href="{%url 'success' %}" >GO BACK</a>
+  </div>
 </form>
 
 </div>
  </body>
+</html>
