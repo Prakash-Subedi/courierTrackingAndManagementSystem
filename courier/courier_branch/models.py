@@ -29,7 +29,7 @@ class Branch(models.Model):
 
 class Courier(models.Model):
     courier_id = models.AutoField(primary_key=True)  # auto generated
-    courier_name = models.CharField(max_length=100, help_text='Enter name of courier')
+    courier_name = models.CharField(max_length=100,blank=False, unique=True, help_text='Enter name of courier')
     courier_description = models.TextField(max_length=300, blank=True, help_text='Notes about Courier')
     sending_branch_name = models.ForeignKey(Branch, on_delete=models.CASCADE, help_text='Sending Branch ')
 
