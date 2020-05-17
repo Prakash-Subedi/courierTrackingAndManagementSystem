@@ -1,14 +1,13 @@
 <!DOCTYPE html>
+{% extends 'logged_nav_bar.html' %}
 {% load crispy_forms_tags %}
-<html lang="en">
-<head>
-    <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <meta charset="UTF-8">
+
     <title>Courier Form</title>
 
 
-      <form class="col-xs-4 col-xs-offset-4 col-md-6 "  method="POST" action="">
+{% block content %}
+<section class="contact-page-area" >
+<form class="col-xs-12 col-xs-offset-3 col-md-6 "  method="POST" action="">
         <div class="p-3 mb-2 bg-info text-white text-center "><h2>Courier Form</h2></div>
     {% csrf_token %}
   {{ form|crispy }}
@@ -18,9 +17,44 @@
         <div class="alert alert-info" role="alert">
             Cancel registration process and <a href="{%url 'success' %}" >GO BACK</a> </div>
     </form>
-  </div>
-</head>
-<body>
+</section>
+<!--start footer area-->
+    <footer class="page-footer">
 
-</body>
-</html>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-3 col-xs-12 col-lg-4">
+
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 col-lg-2">
+
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
+
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
+
+                </div>
+            </div>
+        </div>
+
+    <div class="copyright-area">
+        <div class="container">
+            <div class="col-xs-6 col-sm-6 col-md-6 text-left">
+                <div class="footer-text">
+                    <p>Copyright {% now 'Y' %} , All Rights Reserved</p>
+                </div>
+            </div>
+            <div class="col-xs-12  col-sm-6 col-md-6 text-right">
+                <div class="footer-text">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-google-plus"></a>
+                    <a href="#" class="fa fa-dribbble"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+        </footer>
+{% endblock %}

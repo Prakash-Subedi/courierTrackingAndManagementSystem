@@ -1,18 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    {% for courier in courier_info %}
-    {{ courier.receiving_branch }}
-    {{ courier.sending_branch_name }}
-    {{ courier.courier_tracking_id }}
-    <br>
-    <br><br>
-    <br>
-    {% endfor %}
-</head>
-<body>
+{% extends 'logged_nav_bar.html' %}
 
-</body>
-</html>
+    {% block content %}
+
+
+    <title>Courier details</title>
+<!--    Courier details-->
+     <!--    start Courier Details content-->
+    <section class="contact-page-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2>Courier Details</h2>
+                        <h5>All the information of couriers</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <div class="about_us_content_title">
+                        <ul class="breadcrumbs">
+                            <li><a href="#">home</a></li>
+                            <li><a href="#">contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--    Table from database-->
+     <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 col-lg-6 ">
+                    <div class="single-about-us-bottom ">
+                        <h4>Total pending :</h4>
+                         <h1 class="counter">{{ pending }}</h1>
+                        <p>Delivering..</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 col-lg-6">
+                    <div class="single-about-us-bottom">
+                        <h4>Total Delivered:</h4>
+                         <h1 class="counter">{{ delivered }}</h1>
+                        <p> Successfully delivered.  </p>
+                    </div>
+                </div> </div> </div> </section>
+
+
+
+<section class=" ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2>All pending Courier Details</h2>
+                        <h5>All the information of pending couriers</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div class="container col-md-12">
+  <h3>Table</h3>
+  <p></p>
+  <div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Courier Name</th>
+        <th>Sending Branch</th>
+        <th>Receiving Branch</th>
+        <th>Receiving Person</th>
+         <th>Sending Person</th>
+        <th>Delivery address</th>
+        <th>Tracking ID</th>
+         <th>Status</th>
+          <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for courier in courier_pending %}
+      <tr>
+        <td>{{ courier.courier_name }}</td>
+        <td>{{ courier.sending_branch_name }}</td>
+        <td>{{ courier.receiving_branch }}</td>
+        <td>{{ courier.courier_receiving_person }}</td>
+        <td>{{ courier.courier_sending_person }}</td>
+        <td>{{ courier.delivery_address }}</td>
+        <td>{{ courier.courier_tracking_id }}</td>
+        <td>{{ courier.courier_status }}</td>
+          <th>
+              <a href="{% url 'edit_courier' courier.courier_id %}" roll= "button" >Edit</a>
+          </th>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+    </div>
+
+</section> </section>
+
+
+
+
+{% endblock %}
+
+

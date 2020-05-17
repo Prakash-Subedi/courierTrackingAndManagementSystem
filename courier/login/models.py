@@ -3,10 +3,14 @@ from django.db import models
 
 # Create your models here.
 class UserProfile(models.Model):
-    user=models.OneToOneField(User, on_delete= models.CASCADE)
-
-    post = models.CharField(max_length=60)
-    branch = models.CharField(max_length=100)
+    POST_CHOICES = (
+        ("Manager", "Manager"),
+        ("Staff", "Staff"),
+    )
+    user = models.OneToOneField(User, on_delete= models.CASCADE)
+    post = models.CharField(choices=POST_CHOICES, max_length=20)
+    branch = models.ForeignKey('courier_branch.Branch', on_delete=models.CASCADE)
+    # branch = models.CharField(max_length=100)
     age = models.IntegerField()
 
 

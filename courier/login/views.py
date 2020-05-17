@@ -47,7 +47,7 @@ def success(request):
     return render(request, 'success/success.html')
 # @unauthenticated_users
 def user_logout(request):
-    if request.method == "POST":
+    # if request.method == "POST":
         logout(request)
         return HttpResponseRedirect(reverse('index'),)
 

@@ -6,8 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fast Delivery</title>
-    <!--  bootstrap css -->
+
+
+
+   <!--  bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!--  font Awesome Css  -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
@@ -33,44 +35,49 @@
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
+
 <body class="js">
-    <!--start header area-->
     <div id="preloader"></div>
-    <section class="header_area" id="home">
-        <!--   start logo & menu markup    -->
+    <section class="about-us">
         <div class="logo_menu" id="sticker">
             <div class="container">
                 <div class="row">
                     <div class="col-md-2 col-lg-2 col-sm-2 col-xs-6">
                         <div class="logo">
                             <a href="{% url 'success' %}"><b>Webclubs</b></a>
+<!--                            <a href="{% url 'index' %}"><img src="img/logo.png" alt="logo"></a>-->
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-6 col-md-offset-1 col-sm-7 col-lg-offset-1 col-lg-6 mobMenuCol">
                         <nav class="navbar">
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                                <ul class="nav navbar-nav navbar-right menu">
-
-                                     <li><a href="{% url 'success' %}">Home</a></li>
-                                    <li><a href="{% url 'about' %}">about</a></li>
-                                    <li><a href="index.html">Service</a>
+                            <ul class="nav navbar-nav navbar-right menu">
+                                <li><a href="{% url 'success' %}">home</a>
+<!--                                    <ul class="dropdownMenu">-->
+<!--                                        <li><a href="index-2.html">Home 2</a></li>-->
+<!--                                        <li><a href="index-3.html">Home 3</a></li>-->
+<!--                                        <li><a href="index-4.html">Home 4</a></li>-->
+<!--                                        <li><a href="index-5.html">Home 5</a></li>-->
+<!--                                        <li><a href="index-6.html">Home 6</a></li>-->
+<!--                                    </ul>-->
+                                </li>
+                                <li><a href="{% url 'about' %}">about</a></li>
+                                    <li><a href="#">Service</a>
                                        <ul class="dropdownMenu">
                                            <li><a href="{% url 'register' %}">Add Staff</a></li>
                                            <li><a href="i{% url 'courier_form' %}">Register Courier</a></li>
                                            <li><a href="{% url 'courier_detail' %}">All Pending Courier</a></li>
 
                                        </ul>
-
                                     </li>
                                     <li><a href="#">pricing</a></li>
                                     <li><a href="{% url 'contact' %}">contact</a></li>
-                                </ul>
+                            </ul>
                         </nav>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-4 col-lg-3 signup">
-                    <ul class="nav navbar-nav">
-
+                        <ul class="nav navbar-nav">
                             {% if user.is_authenticated %}
                             <li><a href="#">{{user.username}}</a></li>
                             <li><a href="{% url 'logout' %}">Log out</a></li>
@@ -78,91 +85,20 @@
                             {% if not user.is_authenticated %}
                             <li><a href="/login">login</a></li>
                             {% endif %}
-
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!--   end of logo menu markup     -->
-        <!--  start welcome text marup  -->
-        <div class="table">
-            <div class="cell">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 text-center">
-                            <div class="welcome_text">
-                                <h1>Get the fastest service </h1>
-                                <h1>for your product</h1>
-                                <div class="welcome_p">
-                                    <p>Enter your courier tracking codes to get the status of courier </p>
-                                    <p></p>
-                                </div>
-                                <div class="welcome_form">
-                                    <form method="GET" action="/tracked_courier">
-
-                                        <input class="form-control" type="text" name="courier_id" placeholder="Enter your Courier Tracking ID" >
-                                        <input class="submit" type="submit" value="Track your Courier">
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end of welcome text markup-->
     </section>
-    <!--end of header area-->
 
-   <!--   start about top area-->
-    <section class="about_top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="about_single_item">
-                        <div class="item_icon">
-                            <img src="img/item_icon.png" alt="item">
-                        </div>
-                        <div class="about_single_item_content">
-                            <h4>Same Day Delivery</h4>
-                            <p>When you have a time-critical delivery, we will find the solution, delivering your goods to the door anywhere in India as soon as possible.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="about_single_item">
-                        <div class="item_icon">
-                            <img src="img/item_icon.png" alt="item">
-                        </div>
-                        <div class="about_single_item_content">
-                            <h4>Priority Services</h4>
-                            <p>We offer a range of priority and overnight delivery options when your goods need to be delivered the next business day.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="about_single_item">
-                        <div class="item_icon">
-                            <img src="img/item_icon.png" alt="item">
-                        </div>
-                        <div class="about_single_item_content">
-                            <h4>International Courier Services</h4>
-                            <p>Delivering to over 80,000 destinations worldwide, PACK & SEND can support you with our extensive range of international service options.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--    end of about top area-->
-    <!--    end of about top area-->
-<body >
+
+<section>
 {% block content %}
 {% endblock %}
-</body>
- <!--  jquery.min.js  -->
+</section>
+
+    <!--  jquery.min.js  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <!--    bootstrap.min.js-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -184,6 +120,6 @@
     <!--    main.js-->
     <script src="{% static 'js/main.js' %}"></script>
 </body>
-</html>
 
+</html>
 

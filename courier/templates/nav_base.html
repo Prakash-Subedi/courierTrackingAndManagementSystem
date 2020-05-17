@@ -56,25 +56,22 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                                 <ul class="nav navbar-nav navbar-right menu">
                                     <li class="current-menu-item"><a href="index.html">home <span class="caret"></span></a>
-                                       <ul class="dropdownMenu">
-                                           <li><a href="index-2.html">Home 2</a></li>
-                                           <li><a href="index-3.html">Home 3</a></li>
-                                           <li><a href="index-4.html">Home 4</a></li>
-                                           <li><a href="index-5.html">Home 5</a></li>
-                                           <li><a href="index-6.html">Home 6</a></li>
-                                       </ul>
+<!--                                       <ul class="dropdownMenu">-->
+<!--                                           <li><a href="index-2.html">Home 2</a></li>-->
+<!--                                           <li><a href="index-3.html">Home 3</a></li>-->
+<!--                                           <li><a href="index-4.html">Home 4</a></li>-->
+<!--                                           <li><a href="index-5.html">Home 5</a></li>-->
+<!--                                           <li><a href="index-6.html">Home 6</a></li>-->
+<!--                                       </ul>-->
 
                                     </li>
-<!--                                    % if request.user|has_group:"staff" and if request.user|has_group:"admin" %-->
-<!--                               % if request.user.is_staff %-->
-<!--                                    % if request.user.groups.exists == 'Admin' %-->
+
 
                                     <li><a href="about.html">about</a></li>
                                     <li><a href="service.html">services</a></li>
                                     <li><a href="pricing.html">pricing</a></li>
                                     <li><a href="contact.html">contact</a></li>
-<!--                                    % endif %-->
-<!--                                  % endif %-->
+
                           </ul>
                             <!-- /.navbar-collapse -->
                         </nav>
@@ -96,18 +93,7 @@
 </div>
                         {% endif %}
 
-<!--                        end try-->
-
-<!--                        <li><a href="#">{{user.username}},</a></li>-->
-
-
-
-<!--                         <li> <form method="POST" action="/logout/">-->
-<!--                             {% csrf_token %}-->
-<!--                            <input type="submit" value="Logout">-->
-<!--                         </form>  </li>-->
-
-                            {% if request.user.is_staff %}
+                           {% if request.user.is_staff %}
                             <button type="button" class="btn btn-warning"><a href="/register">Add staff</a></button>
                             {% endif %}
                         </ul>
@@ -115,7 +101,7 @@
                 </div>
             </div>
         </div>
-
+    </section>
 
 
 
