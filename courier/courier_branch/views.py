@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from .forms import CourierForm
@@ -9,7 +10,7 @@ from django.shortcuts import get_object_or_404
 # Create your views here.
 
 # from ..login.models import UserProfile
-
+@login_required(login_url="/login/")
 def courier_form(request):
         form = CourierForm()
         if request.method == 'POST':
@@ -26,7 +27,10 @@ def courier_form(request):
         else:
             return render(request, 'courier/record.html', {'form': form})
 
+@login_required(login_url="/login/")
 def courier_detail(request):
+    branchs= request.user.userprofile.branch
+    print(branchs)
     courier_info = CourierDetails.objects.all()
     courier_pending = CourierDetails.objects.filter(courier_status='Pending')
     courier_delivered = CourierDetails.objects.filter(courier_status='Delivered')
@@ -53,8 +57,8 @@ def courier_tracking(request):
             raise Http404('Courier with this Tracking ID is not found. Check Tracking ID, Thank you !!')
     else:
         return redirect('success')
-
-def edit_courier (request, pk ):
+@login_required(login_url="/login/")
+def edit_courier(request, pk):
     courier = get_object_or_404(CourierDetails, courier_id=pk)
     if request.method == "POST":
         form= CourierForm(request.POST, instance=courier)
