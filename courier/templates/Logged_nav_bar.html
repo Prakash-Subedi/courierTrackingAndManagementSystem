@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col-md-2 col-lg-2 col-sm-2 col-xs-6">
                         <div class="logo">
-                            <a href="{% url 'success' %}"><b>Webclubs</b></a>
+                            <a href="{% url 'index' %}"><b>Webclubs</b></a>
 <!--                            <a href="{% url 'index' %}"><img src="img/logo.png" alt="logo"></a>-->
                         </div>
                     </div>
@@ -65,13 +65,18 @@
                                 <li><a href="{% url 'about' %}">about</a></li>
                                     <li><a href="#">Service</a>
                                        <ul class="dropdownMenu">
+                                           {% ifnotequal request.user.userprofile.post  "Staff" %}
                                            <li><a href="{% url 'register' %}">Add Staff</a></li>
+                                           {% endifnotequal %}
                                            <li><a href="{% url 'courier_form' %}">Register Courier</a></li>
-                                           <li><a href="{% url 'courier_detail' %}">All Pending Courier</a></li>
-
+                                           <li><a href="{% url 'courier_search' %}">Search Courier</a></li>
+                                           <li><a href="{% url 'courier_detail_branch' %}">Pending couriers</a></li>
+                                           {% ifnotequal request.user.userprofile.post  "Staff" %}
+                                           <li><a href="{% url 'courier_detail' %}">All Pending Couriers</a></li>
+                                           {% endifnotequal %}
                                        </ul>
                                     </li>
-                                    <li><a href="#">pricing</a></li>
+                                    <li><a href="{% url 'branches' %}">our branch</a></li>
                                     <li><a href="{% url 'contact' %}">contact</a></li>
                             </ul>
                         </nav>
@@ -96,8 +101,48 @@
 <section>
 {% block content %}
 {% endblock %}
-</section>
 
+</section>
+ <!--start footer area-->
+    <footer class="page-footer">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-3 col-xs-12 col-lg-4">
+
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 col-lg-2">
+
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
+
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
+
+                </div>
+            </div>
+        </div>
+
+    <div class="copyright-area">
+        <div class="container">
+            <div class="col-xs-6 col-sm-6 col-md-6 text-left">
+                <div class="footer-text">
+                    <p>Copyright {% now 'Y' %} , All Rights Reserved</p>
+                </div>
+            </div>
+            <div class="col-xs-12  col-sm-6 col-md-6 text-right">
+                <div class="footer-text">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-google-plus"></a>
+                    <a href="#" class="fa fa-dribbble"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+        </footer>
+<!--    end footer-->
     <!--  jquery.min.js  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <!--    bootstrap.min.js-->

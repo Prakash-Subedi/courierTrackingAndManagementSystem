@@ -66,7 +66,7 @@
                                     </li>
                                     <li><a href="{% url 'about' %}">about</a></li>
                                     <li><a href="#">services</a></li>
-                                    <li><a href="#">pricing</a></li>
+                                    <li><a href="{% url 'branches' %}">our branch</a></li>
                                     <li><a href="{% url 'contact' %}">contact</a></li>
                                 </ul>
                             <!-- /.navbar-collapse -->
@@ -96,9 +96,9 @@
                                     <p></p>
                                 </div>
                                 <div class="welcome_form">
-                                    <form action="#">
-                                        <input class="form-control" type="text" placeholder="Enter your product code">
-                                        <input class="submit" type="submit" value="Track your product">
+                                    <form method="GET" action="/tracked_courier">
+                                        <input class="form-control" type="text" name="courier_id" placeholder="Enter your Courier Tracking ID" >
+                                        <input class="submit" type="submit" value="Track your Courier">
                                     </form>
                                 </div>
                             </div>

@@ -52,18 +52,24 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                                 <ul class="nav navbar-nav navbar-right menu">
 
-                                     <li><a href="{% url 'success' %}">Home</a></li>
+                                     <li><a href="{% url 'index' %}">Home</a></li>
                                     <li><a href="{% url 'about' %}">about</a></li>
                                     <li><a href="index.html">Service</a>
                                        <ul class="dropdownMenu">
+                                           {% ifnotequal request.user.userprofile.post  "Staff" %}
                                            <li><a href="{% url 'register' %}">Add Staff</a></li>
+                                           {% endifnotequal %}
                                            <li><a href="{% url 'courier_form' %}">Register Courier</a></li>
-                                           <li><a href="{% url 'courier_detail' %}">All Pending Courier</a></li>
+                                           <li><a href="{% url 'courier_search' %}">Search Courier</a></li>
+                                           <li><a href="{% url 'courier_detail_branch' %}">Pending couriers</a></li>
+                                           {% ifnotequal request.user.userprofile.post  "Staff" %}
+                                           <li><a href="{% url 'courier_detail' %}">All Pending Couriers</a></li>
+                                           {% endifnotequal %}
 
                                        </ul>
 
                                     </li>
-                                    <li><a href="#">pricing</a></li>
+                                    <li><a href="{% url 'branches' %}">our branch</a></li>
                                     <li><a href="{% url 'contact' %}">contact</a></li>
                                 </ul>
                         </nav>

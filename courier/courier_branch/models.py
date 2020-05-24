@@ -1,7 +1,8 @@
 from django.db import models
-from hashid_field import HashidAutoField   # pip install django-hashid-field
-from phone_field import PhoneField  # pip install django-phone-field
-
+from django.db.models import DateTimeField
+from hashid_field import HashidAutoField    # pip install django-hashid-field
+from phone_field import PhoneField   # pip install django-phone-field
+from django.utils import timezone
 
 # Create your models here.
 
@@ -14,12 +15,20 @@ class Branch(models.Model):
     branch_address = models.CharField(max_length=50, blank=False)
     branch_phone_no = models.CharField(blank=True, max_length=16, help_text='Contact phone number')
     branch_des = models.TextField()
-    branch_pic = models.ImageField(upload_to='img/', blank=True)  # python -m pip install Pillow
-    branch_created_at = models.DateTimeField(auto_now_add=True)
+    branch_pic = models.ImageField(upload_to='branch/', blank=True)  # python -m pip install Pillow
+    branch_created_at = models.DateTimeField(auto_now_add=True,)
     branch_updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.branch_name
+
+    def pre_save(self, model_instance, add):
+        if self.auto_now or (self.auto_now_add and add):
+            value = timezone.now()
+            setattr(model_instance, self.attname, value)
+            return value
+        else:
+            return super(DateTimeField, self).pre_save(model_instance, add)
 
 # Branch_CHOICE = ( Branch.objects.only('branch_name'))
 

@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cleanup.apps.CleanupConfig',  # cleaning media file while changing image or deleting image
+                                            # in database: pip install django-cleanup 
+
 ]
 
 MIDDLEWARE = [
@@ -126,7 +129,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'statics')
    ]
-# STATIC_ROOT = os.path.join(BASE_DIR,'templates/assets')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'statics/img')
+
+# STATIC_ROOT = os.path.join(BASE_DIR,'statics/')
 LOGIN_REDIRECT_URL = '/success'
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 HASHID_FIELD_SALT = "a long and secure salt value that is not the same as SECRET_KEY"

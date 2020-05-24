@@ -1,73 +1,164 @@
 
-{% extends 'nav_base.html' %}
+{% extends 'logged_nav_bar.html' %}
 {% load static %}
+    {% block content %}
 
-
-{% block content %}
- <div class="table">
-            <div class="cell">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 text-center">
-                            <div class="welcome_text">
-                                <h1>Our Branches </h1>
-                                <h1>for your services</h1>
-                        </div>
+    <title>Our Branches</title>
+    <section class="about_us_area" id="about">
+        <div class="container">
+            <div class="row page-title">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2>Our Branches</h2>
+                        <h5>Webclubs Infotech</h5>
                     </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <div class="about_us_content_title">
+                        <ul class="breadcrumbs">
+                            <li><a href="{% url 'success' %}">Home</a></li>
+                            <li><a href="#">Branches</a></li>
+                        </ul>
                     </div>
+                </div>
+            </div>
+
+{% for branch in branch_details %}
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="about_us_content">
+                        <h3>{{ branch.branch_name }} branch </h3>
+                        <h4>Address: {{ branch.branch_address }} </h4>
+                        <h4>Phone no.:{{ branch.branch_phone_no }} </h4>
+
+                        <p>{{ branch.branch_des }}</p>
+                        <a href="#">read more <span  class="fa fa-long-arrow-right"></span></a>
+                    </div>
+                </div>
+                <div class="col-md-offset-1 col-sm-6 col-md-5">
+                    <div class="about_car">
+<!--                        <iframe width="400" height="220" src="https://www.youtube.com/embed/qa9BruHe1oI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+                        <img src="{{ branch.branch_pic.url }}" width="400" height="220" alt="{{ branch.branch_name }}">
+                    </div>
+                </div>
+            </div>
+
+<br><br><br>
+            {% endfor %}
+
+            <!--        end loop-->
+        </div>
 
 
 
-</section>
-      <div class="col-lg-4 col-md-6">
-
-                            <img src="https://static.techspot.com/images2/news/bigimage/2019/11/2019-11-21-image-6.png" alt="">
-                            <a href="#" class="prise">$500</a>
+    </section>
 
 
-                            <a href="destination_details.html"><h3>California</h3></a>
-                            <p>United State of America</p>
+<!--    &lt;!&ndash;start about bottom area&ndash;&gt;-->
+<!--    <section class="about-us-bottom-area">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4">-->
+<!--                    <div class="single-about-us-bottom">-->
+<!--                        <h4>what we do</h4>-->
+<!--                        <p>Webclubs Infotech has established some simple shared values that unite the entire company, and all of the business distributors that are associated with Us. We believe that these values guide our actions and help us to achieve everything.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4">-->
+<!--                    <div class="single-about-us-bottom">-->
+<!--                        <h4>our history</h4>-->
+<!--                        <p>Webclubs Infotech is one of India's prominent business hub established in the year 2016 with a diverse portfolio of assets in software development, business solutions, investigations, technology-enabled services, Digital Marketing, SEO, SMO and many more.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-4 col-sm-4 col-xs-12 col-lg-4">-->
+<!--                    <div class="single-about-us-bottom">-->
+<!--                        <h4>our mission</h4>-->
+<!--                        <p>The first step to growing a brand online is to drive qualified leads to your website or mobile app. Having a user-friendly experience is an important part of any successful business strategy, but generating relevant traffic is essential to having a strong conversion rate. We take pride in our marketing team's achievements, and you can browse through our case studies for a preview of the quality results we deliver to our clients.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    &lt;!&ndash;    start client say area&ndash;&gt;-->
+
+<!--    <section class="client-area" id="blog">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-5 col-xs-12 col-sm-8">-->
+<!--                    <div class="slients-title">-->
+<!--                        <h2>What our clients say</h2>-->
+<!--                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-6 col-sm-6 col-xs-12">-->
+<!--                    <div class="single-clients">-->
+<!--                        <div class="client-img">-->
+<!--                            <img src="img/client.jpg" alt="client">-->
+<!--                        </div>-->
+<!--                        <div class="client-details">-->
+<!--                            <p>“Lorem ipsum dolor sit amet, consectetuer adipis cing elit, sed diam nonummy nibh euismod tinci dunt ut laoreet dolore magna aliquam.”</p>-->
+<!--                            <h4>John Doe<span>Student</span></h4>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6 col-sm-6 col-xs-12">-->
+<!--                    <div class="single-clients">-->
+<!--                        <div class="client-img">-->
+<!--                            <img src="img/client-2.jpg" alt="client">-->
+<!--                        </div>-->
+<!--                        <div class="client-details">-->
+<!--                            <p>“Lorem ipsum dolor sit amet, consectetuer adipis cing elit, sed diam nonummy nibh euismod tinci dunt ut laoreet dolore magna aliquam.”</p>-->
+<!--                            <h4>John Doe<span>Student</span></h4>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
 
 
-                                    <a href="#">5 Days</a>
-      </div>
-                    <div class="col-lg-4 col-md-6">
+    <!--start footer area-->
 
-                            <img src="https://static.techspot.com/images2/news/bigimage/2019/11/2019-11-21-image-6.png" alt="">
-                            <a href="#" class="prise">$500</a>
+    <section class="footer-area" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-3 col-xs-12 col-lg-4">
+                    <div class="single-footer">
+                        <h2>about us</h2>
+                        <p>Webclubs Infotech is one of India's prominent business hub established in the year 2016 with a diverse portfolio of assets in software development, business solutions, investigations, technology-enabled services, Digital Marketing, SEO, SMO and many more.</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-12 col-lg-2">
+                    <div class="single-footer">
+                        <h2>More links</h2>
+                        <ul class="list">
+                            <li><a href="#">about us.</a></li>
+                            <li><a href="#">We Accepts.</a></li>
+                            <li><a href="#">news latters</a></li>
+                            <li><a href="#">Pricing & plans</a></li>
+                            <li><a href="#">Calculate</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
+                    <div class="single-footer">
+                        <h2>We Accepts</h2>
+                        <a href="#"><img src="{% static 'img/about logo.png' %}" alt="#"></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
+                    <div class="single-footer clearfix">
+                        <h2>news latters</h2>
+                        <input type="text" class="form-control">
+                        <input type="submit" class="submt-button" value="submit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-                            <a href="destination_details.html"><h3>California</h3></a>
-                            <p>United State of America</p>
-
-
-                                    <a href="#">5 Days</a>
-      </div>
-                    <div class="col-lg-4 col-md-6">
-
-                            <img src="https://static.techspot.com/images2/news/bigimage/2019/11/2019-11-21-image-6.png" alt="">
-                            <a href="#" class="prise">$500</a>
-
-
-                            <a href="destination_details.html"><h3>California</h3></a>
-                            <p>United State of America</p>
-
-
-                                    <a href="#">5 Days</a>
-      </div>
-                    <div class="col-lg-4 col-md-6">
-
-                            <img src="https://static.techspot.com/images2/news/bigimage/2019/11/2019-11-21-image-6.png" alt="">
-                            <a href="#" class="prise">$500</a>
-
-
-                            <a href="destination_details.html"><h3>California</h3></a>
-                            <p>United State of America</p>
-
-
-                                    <a href="#">5 Days</a>
-      </div>
-
-
-
-{% endblock %}
+    {% endblock %}

@@ -58,13 +58,26 @@
                 </div>
             </div>
         </div>
+<style>
+table2 {
+  border-collapse: collapse;
+  width: 100%;
+}
 
-<div class="container col-md-12">
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+</style>
+
+<div class="container col-md-12 col-sm-12 col-xs-12">
+    <div class="container">
   <h3>Table</h3>
   <p></p>
   <div class="table-responsive">
-  <table class="table">
-    <thead>
+  <table class="table2">
+    <thead class="thead-dark">
       <tr>
         <th>Courier Name</th>
         <th>Sending Branch</th>
@@ -88,10 +101,18 @@
         <td>{{ courier.delivery_address }}</td>
         <td>{{ courier.courier_tracking_id }}</td>
         <td>{{ courier.courier_status }}</td>
-          <th>
-              <a href="{% url 'edit_courier' courier.courier_id %}" roll= "button" >Edit</a>
-          </th>
+
+          <td>
+            <form method="get" action="{% url 'edit_courier' courier.courier_id %}">
+    <button class="btn btn-info" type="submit">Edit</button>
+</form>
+
+
+
+          </td>
       </tr>
+
+
     {% endfor %}
     </tbody>
   </table>
@@ -101,10 +122,10 @@
 </div>
     </div>
 
-</section> </section>
 
+</section>
 
-
+    </section>
 
 {% endblock %}
 

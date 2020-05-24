@@ -10,6 +10,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('success/', views.success, name='success'),
     path('logout/', views.user_logout, name='logout'),
-    path('branches/', views.branches, name='branches'),
+
+
      # path(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'})
 ]
