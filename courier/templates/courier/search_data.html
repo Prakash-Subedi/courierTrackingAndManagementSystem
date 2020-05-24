@@ -1,0 +1,100 @@
+{% extends 'logged_nav_bar.html' %}
+
+    {% block content %}
+
+
+    <title>courier data</title>
+
+    <!--    start contact page content-->
+    <section class="contact-page-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2> Couriers data {{ branch_type }} by {{ branch_name }}  branch</h2>
+
+                        <h3> Searched {{ courier_status }} couriers </h3>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <div class="about_us_content_title">
+                        <ul class="breadcrumbs">
+                            <li><a href="{%url 'success' %}">home</a></li>
+                            <li><a href="#">Courier data </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-11 col-sm-6">
+                    <div class="contact-form">
+                        <h2 class="contact_page_headings">Courier's table from {{ date_from }} to  {{ date_to }}</h2>
+<!--                        table-->
+<style>
+table2 {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+</style>
+  <table class="table2">
+    <thead>
+      <tr>
+        <th>Courier Name</th>
+        <th>Sending Branch</th>
+        <th>Receiving Branch</th>
+        <th>Receiving Person</th>
+         <th>Sending Person</th>
+        <th>Delivery address</th>
+        <th>Tracking ID</th>
+          <th>Last Updated</th>
+         <th>Status</th>
+          <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for courier in courier_details %}
+      <tr>
+        <td>{{ courier.courier_name }}</td>
+        <td>{{ courier.sending_branch_name }}</td>
+        <td>{{ courier.receiving_branch }}</td>
+        <td>{{ courier.courier_receiving_person }}</td>
+        <td>{{ courier.courier_sending_person }}</td>
+        <td>{{ courier.delivery_address }}</td>
+        <td>{{ courier.courier_tracking_id }}</td>
+          <td>{{ courier.updated_at }}</td>
+        <td>{{ courier.courier_status }}</td>
+
+          <td>
+            <form method="get" action="{% url 'edit_courier' courier.courier_id %}">
+    <button class="btn btn-info" type="submit">Edit</button>
+</form>
+          </td>
+      </tr>
+{% endfor %}
+
+
+    </tbody>
+  </table>
+
+
+<!--end table-->
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+<br>
+
+
+     {% endblock %}

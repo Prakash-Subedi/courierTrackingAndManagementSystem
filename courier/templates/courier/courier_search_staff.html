@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% extends 'logged_nav_bar.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Courier</title>
+</head>
+<body>
+
+  searching area
+<section class="about_us_area" id="about">
+        <div class="container">
+            <div class="row page-title">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2>Search Courier</h2>
+                        <h5>Webclubs Infotech</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <div class="about_us_content_title">
+                        <ul class="breadcrumbs">
+                            <li><a href="{% url 'success' %}">home</a></li>
+                            <li><a href="#">search courier</a></li>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+               </div>
+<!--start Search area-->
+
+<section class="" id="tracking">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-6">
+                    <div class="calculate_title">
+                        <h3>Please selects searching options</h3>
+<!-- <p></p>-->
+                    </div>
+
+                    <div class="calculate_form">
+                        <form method="GET" action="/search_data/">
+                            {% csrf_token %}
+
+
+
+
+                            <div class="single_calculate">
+                                <label>Courier Type</label>
+                                <div class="calculate_option padding-riht">
+
+                                    <select name="Branch_type">
+                                        <option value="Sending" >Sending</option>
+                                         <option value="Receiving" >Receiving</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="single_calculate">
+                                <label>Courier status</label>
+                                <div class="calculate_option padding-riht">
+
+                                    <select name="Status">
+                                        <option value="Pending" >Pending</option>
+                                         <option value="Delivered" >Delivered</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="single_calculate">
+                                <input type="date" name="date_from">
+                                <label>Date From</label>
+                            </div>
+                            <div class="single_calculate">
+                                <input type="date" name="date_to">
+                                <label>Date To</label>
+                            </div>
+
+
+                            <div class="calculat-button">
+                                <input type="submit" class="calulate" value="Search Courier">
+                            </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--        <div class="calculat-image">-->
+<!--            <img src="img/men.png" alt="#">-->
+<!--        </div>-->
+</section></div></section>
+
+
+
+</body>
+    {% endblock %}
+</html>
