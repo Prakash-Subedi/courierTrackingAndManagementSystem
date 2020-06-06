@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends 'logged_nav_bar.html' %}
+
+    <title>Calculated cost</title>
+
+{% block content %}
+<section class="contact-page-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2>Cost calculation: {{ type }}</h2>
+                        <h5>Cost of courier according to information provided. </h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <div class="about_us_content_title">
+                        <ul class="breadcrumbs">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="#">Cost calculation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--    Table from database-->
+     <section class="about-us-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">
+                    <div class="single-about-us-bottom ">
+                        <table style="width:60%">
+  <tr>
+      <th><h3><b>Length</b></h3></th>
+    <td><h3><b>:</b>    {{ length }}{{ length_unit }} </h3></td>
+  </tr>
+                            <tr>
+      <th><h3><b>Width </b></h3></th>
+                                <td><h3><b>:</b>   {{ width }} {{ width_unit }} </h3></td>
+  </tr>
+  <tr>
+      <th><h3><b>Hight </b></h3></th>
+    <td><h3> <b>:</b>    {{ hight }} {{ hight_unit}} </h3></td>
+  </tr>
+  <tr>
+      <th><h3><b>Wight </b></h3></th>
+    <td><h3><b>:</b>    {{ wight }} {{ wight_unit }} </h3></td>
+  </tr>
+                        </table>
+                        <div class="alert alert-info" role="alert"><h3><b>The cost of courier: ₹ {{ cost }}</b></h3></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</section>
+
+<!--<div class="alert alert-info" role="alert">-->
+<!--            Return to <a href="{% url 'success' %}" >Home page</a> </div>-->
+    </section>
+
+{% endblock %}
+

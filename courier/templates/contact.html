@@ -1,5 +1,5 @@
 {% extends 'logged_nav_bar.html' %}
-
+{% load static %}
     {% block content %}
 
 
@@ -12,13 +12,13 @@
                 <div class="col-md-6 col-sm-6 col-xs-6 text-left">
                     <div class="about_us_content_title">
                         <h2>contact us</h2>
-                        <h5>no about us more</h5>
+                        <h5>Fill the contact form</h5>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6 text-right">
                     <div class="about_us_content_title">
                         <ul class="breadcrumbs">
-                            <li><a href="#">home</a></li>
+                            <li><a href="{% url 'index' %}">home</a></li>
                             <li><a href="#">contact</a></li>
                         </ul>
                     </div>
@@ -27,13 +27,18 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="contact-form">
+                        {% if form.error %}
+  <div class="alert alert-danger" role="alert"> There is something wrong with what you entered.</div>
+  {% endif %}
+
+  {%if message %}
+      <div class="alert alert-info" role="alert">{{ message }}</div>
+  {% endif %}
                         <h2 class="contact_page_headings">Send us a message</h2>
-                        <form method="post" action="#">
-                            <input type="text" name="username" placeholder="Your name">
-                            <input type="email" name="email_address" placeholder="Email address">
-                            <input type="text" name="subject" placeholder="Subject">
-                            <textarea name="messages" placeholder="Message"></textarea>
-                            <input type="submit" name="submit" value="send">
+                        <form method="POST" action="#">
+                              {% csrf_token %}
+                           {{ form }}
+                            <input class= "btn btn-outline-info"type="submit">
                         </form>
                     </div>
                 </div>
@@ -61,18 +66,20 @@
                     <div class="single-footer">
                         <h2>More links</h2>
                         <ul class="list">
-                            <li><a href="#">about us.</a></li>
-                            <li><a href="#">We Accepts.</a></li>
-                            <li><a href="#">news latters</a></li>
-                            <li><a href="#">Pricing & plans</a></li>
-                            <li><a href="#">Calculate</a></li>
+                            <li><a href="{% url 'about' %}">about us.</a></li>
+                            <li><a href="{% url 'branches' %}">our branches</a></li>
+                            <li><a href="{% url 'contact' %}">contact us</a></li>
+                             {% if user.is_authenticated %}
+                            <li><a href="{% url 'notice' %}">Notices</a></li>
+                            <li><a href="{% url 'courier_detail_branch' %}">All pending couriers</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
                     <div class="single-footer">
                         <h2>We Accepts</h2>
-                        <a href="#"><img src="img/cards_credt_1.png" alt="#"></a>
+                        <a href="#"><img src="{% static 'img/we_acept.png' %}" alt="#"></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">

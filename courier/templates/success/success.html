@@ -3,6 +3,36 @@
 {% load static %}
 {% block content %}
 
+<!--   start about top area-->
+
+    <section class="about_top" >
+        <div class="row">
+        {% for msg in note %}
+
+                <div class="col-md-4 col-sm-4 col-xs-12">
+
+                    <div class="about_single_item">
+                        <div class="about_single_item_content">
+
+                            <h4>{{ msg.topic}}</h4>
+                            <h5>Date: {{ msg.date }}</h5>
+                            <p>{{ msg.details|truncatewords:20 }}</p>
+                            <a href="{% url 'notice_detail' msg.id %}">read more</a>
+
+                        </div>
+
+                    </div>
+                </div>
+{% endfor %}
+        </div>
+            <div class="container ">
+                <a class="text-danger" href="{% url 'notice' %}"><b>See all the Notices</b> <span  class="fa fa-long-arrow-right"></span></a>
+        </div>
+
+
+    </section>
+    <!--    end of about top area-->
+
      <!--    start about us area-->
     <section class="about_us_area" id="about">
         <div class="container">
@@ -42,7 +72,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="single-clients">
                         <div class="client-img">
-                            <img src="img/client.jpg" alt="client">
+                            <img src="{% static 'img/pp_default.png' %}" alt="client">
                         </div>
                         <div class="client-details">
                             <p>Happy to use this service</p>
@@ -53,7 +83,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="single-clients">
                         <div class="client-img">
-                            <img src="img/client-2.jpg" alt="client">
+                            <img src="{% static 'img/pp_default.png' %}" alt="client">
                         </div>
                         <div class="client-details">
                             <p>A happy customer is your brand ambassador. That same happy customer will promote and expound the qualities of your product or service, and what's more important, they'll raise the profile of your brand without you even having to ask</p>
@@ -66,6 +96,7 @@
     </section>
     <!--    end of client area-->
 <!--start calculate area-->
+
     <section class="calculate_area" id="tracking">
         <div class="container">
             <div class="row">
@@ -75,65 +106,64 @@
                         <p>Check the cost of your courier according to dimensions and destination,</p>
                     </div>
                     <div class="calculate_form">
-                        <form action="post">
+                        <form action="/cal_result/">
                             <div class="single_calculate">
-                                <input type="text">
+                                <input type="text" name="hight">
                                 <label>height</label>
                                 <div class="calculate_option">
-                                    <select>
-                                        <option value="cm">cm</option>
-                                        <option value="ml">ml</option>
-                                        <option value="cm">cm</option>
-                                    </select>
+                                    <select name="hight_unit">
+                                        <option >cm</option>
+                                        <option >m</option>
+                                        </select>
                                 </div>
                             </div>
                             <div class="single_calculate">
-                                <input type="text">
+                                <input type="text" name="width">
                                 <label>width</label>
                                 <div class="calculate_option">
-                                    <select>
-                                        <option value="cm">cm</option>
-                                        <option value="ml">ml</option>
-                                        <option value="cm">cm</option>
+                                    <select name="width_unit">
+                                        <option >cm</option>
+                                        <option >m</option>
+
                                     </select>
                                 </div>
                             </div>
                             <div class="single_calculate">
-                                <input type="text">
+                                <input type="text" name="length">
                                 <label>length</label>
                                 <div class="calculate_option">
-                                    <select>
-                                        <option value="#">cm</option>
-                                        <option value="#">ml</option>
-                                        <option value="#">cm</option>
+                                    <select name="length_unit">
+                                        <option >cm</option>
+                                        <option >m</option>
+
                                     </select>
                                 </div>
                             </div>
                             <div class="single_calculate">
-                                <input type="text">
+                                <input type="text" name="wight">
                                 <label>weight</label>
                                 <div class="calculate_option">
-                                    <select>
-                                        <option value="#">cm</option>
-                                        <option value="#">ml</option>
-                                        <option value="#">cm</option>
+                                    <select name="wight_unit">
+                                        <option >G</option>
+                                        <option >Kg</option>
+
                                     </select>
                                 </div>
                             </div>
                             <div class="single_calculate">
                                 <label>location</label>
-                                <div class="calculate_option selectpadding">
-                                    <select>
-                                        <option value="#">cm</option>
-                                        <option value="#">ml</option>
-                                        <option value="#">cm</option>
-                                    </select>
-                                </div>
+<!--                                <div class="calculate_option ">-->
+<!--                                    <select>-->
+<!--                                        <option value="#">cm</option>-->
+<!--                                        <option value="#">ml</option>-->
+<!--                                        <option value="#">cm</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
                                 <div class="calculate_option padding-riht">
-                                    <select>
-                                        <option value="#" selected>form</option>
-                                        <option value="#">ml</option>
-                                        <option value="#">cm</option>
+                                    <select name="type">
+                                        <option  >National</option>
+                                        <option >International</option>
+
                                     </select>
                                 </div>
                             </div>
@@ -141,8 +171,8 @@
                                 <input type="submit" class="calulate" value="Calculate your cost now">
                             </div>
                             <div class="totla-cost">
-                                <h5>Total Cost: <span>$ 30</span></h5>
-                                <h5>Duration:: <span>3 days</span></h5>
+                                <h5>Minimum Cost:<span>₹ 50</span></h5>
+                                <h5>Duration:<span>3 days</span></h5>
                             </div>
                         </form>
                     </div>
@@ -366,18 +396,20 @@
                     <div class="single-footer">
                         <h2>More links</h2>
                         <ul class="list">
-                            <li><a href="#">about us.</a></li>
-                            <li><a href="#">We Accepts.</a></li>
-                            <li><a href="#">news latters</a></li>
-                            <li><a href="#">Pricing & plans</a></li>
-                            <li><a href="#">Calculate</a></li>
+                            <li><a href="{% url 'about' %}">about us.</a></li>
+                            <li><a href="{% url 'branches' %}">our branches</a></li>
+                            <li><a href="{% url 'contact' %}">contact us</a></li>
+                             {% if user.is_authenticated %}
+                            <li><a href="{% url 'notice' %}">Notices</a></li>
+                            <li><a href="{% url 'courier_detail_branch' %}">All pending couriers</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
                     <div class="single-footer">
                         <h2>We Accepts</h2>
-                        <a href="#"><img src="{% static 'img/about logo.png' %}" alt="#"></a>
+                        <a href="#"><img src="{% static 'img/we_acept.png' %}" alt="we acept"></a>
 <!--                        <a href="#"><img src="img/cards_credt_1.png" alt="#"></a>-->
                     </div>
                 </div>

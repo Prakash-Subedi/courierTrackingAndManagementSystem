@@ -1,0 +1,52 @@
+
+{% extends 'logged_nav_bar.html' %}
+{% load static %}
+    {% block content %}
+
+    <title>Notice</title>
+    <section class="about_us_area" id="about">
+        <div class="container">
+            <div class="row page-title">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        {% if request.user.userprofile.post == 'Admin' %}
+                        <h2>Notice <a href="{% url 'notice_form' %}" class="glyphicon glyphicon-plus"></a></h2>
+                        {% else %}
+                         <h2>Notice </h2>
+                        {% endif %}
+                        <h5>last one month notices</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <div class="about_us_content_title">
+                        <ul class="breadcrumbs">
+                            <li><a href="{% url 'success' %}">Home</a></li>
+                            <li><a href="#">Notices</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+{% for notice in note %}
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="about_us_content">
+                        <h2>{{ notice.topic }}</h2>
+                        <h4>Date: {{ notice.date.date }} </h4>
+                        <p>{{ notice.details|truncatewords:100  }}</p>
+                        <a href="{% url 'notice_detail' notice.id %}">read more <span  class="fa fa-long-arrow-right"></span></a>
+                    </div>
+                </div>
+
+            </div>
+
+<br><br><br>
+            {% endfor %}
+
+            <!--        end loop-->
+        </div>
+    </section>
+
+
+    {% endblock %}

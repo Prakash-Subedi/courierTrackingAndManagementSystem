@@ -1,19 +1,21 @@
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, response
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from .decorators import unauthenticated_users, allowed_users, admin_only, allowed_post
-from .forms import RegisterForm, UserProfileForm
-
-# Create your views here.
+from .forms import RegisterForm, UserProfileForm, NoticeForm
+import datetime
+from .models import Notice
 from django.urls import reverse
 
-
+# Create your views here.
 # @unauthenticated_users
 # def login(request):
 #     return render(request, 'login.html')
+
+
 
 @login_required(login_url="/login/")
 @allowed_post(allowed_roles=['Admin', 'Manager'])
@@ -44,7 +46,37 @@ def register(request):
 # @allowed_users(allowed_roles=['Admin']) # add allowed list
 # @admin_only
 def success(request):
-    return render(request, 'success/success.html')
+    note = Notice.objects.all().order_by('-date')[:3]
+    return render(request, 'success/success.html',{'note': note})
+
+@login_required(login_url="/login/")
+def notice(request):
+    note = Notice.objects.filter(date__range=(datetime.datetime.today()-datetime.timedelta(days=30), datetime.datetime.today())).order_by('-date')
+    return render(request, 'notice.html',{'note': note})
+
+@login_required(login_url="/login/")
+def notic_detail(request, pk):
+    notice = get_object_or_404(Notice, id=pk)
+    if request.method == 'POST':
+        notice.delete()
+        return redirect('notice')
+    return render(request, 'notice_details.html', {'notice': notice})
+
+@login_required(login_url="/login/")
+@allowed_post(allowed_roles=['Admin'])
+def notice_form(request):
+    if request.method == 'POST':
+        form = NoticeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('notice')
+        else:
+            return render(request, 'notice_form.html', {'form': form})
+
+    else:
+        form = NoticeForm()
+        return render(request, 'notice_form.html', {'form': form})
+
 # @unauthenticated_users
 def user_logout(request):
     # if request.method == "POST":

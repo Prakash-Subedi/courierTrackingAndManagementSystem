@@ -1,0 +1,51 @@
+{% extends 'logged_nav_bar.html' %}
+{% load crispy_forms_tags %}
+    {% block content %}
+
+
+    <title>Notice form</title>
+
+    <!--    start contact page content-->
+    <section class="contact-page-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2>Notice form</h2>
+                        <h5>Fill the notice form</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <div class="about_us_content_title">
+                        <ul class="breadcrumbs">
+                            <li><a href="{% url 'index' %}">home</a></li>
+                            <li><a href="#">notice form</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="contact-form">
+                        {% if form.error %}
+  <div class="alert alert-danger" role="alert"> There is something wrong with what you entered.</div>
+  {% endif %}
+                        <h2 class="contact_page_headings">Fill the notice details, you want to publish.</h2>
+                        <form method="POST" action="#">
+                              {% csrf_token %}
+                           {{ form|crispy }}
+                            <input class= "btn btn-outline-info"type="submit">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-1 col-sm-6">
+<!--                    <div class="google-map">-->
+<!--                        <div id="googleMap"></div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+     {% endblock %}

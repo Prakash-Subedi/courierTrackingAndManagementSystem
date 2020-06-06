@@ -44,7 +44,8 @@
                 <div class="row">
                     <div class="col-md-2 col-lg-2 col-sm-2 col-xs-6">
                         <div class="logo">
-                            <a href="{% url 'success' %}"><b>Webclubs</b></a>
+                            <a href="#"><img src="{% static 'img/webtech_logo.png' %}" alt="logo"></a>
+<!--                            <a href="{% url 'success' %}"><b>Webclubs</b></a>-->
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-6 col-md-offset-1 col-sm-7 col-lg-offset-1 col-lg-6 mobMenuCol">
@@ -77,10 +78,14 @@
                     <div class="col-md-3 col-sm-3 col-xs-4 col-lg-3 signup">
                     <ul class="nav navbar-nav">
 
-                            {% if user.is_authenticated %}
-                            <li><a href="#">{{user.username}}</a></li>
+                            {% if user.is_authenticated and request.user.userprofile.post == 'Admin' %}
+                            <li><a href="http://127.0.0.1:8000/admin">{{user.username}}</a></li>
                             <li><a href="{% url 'logout' %}">Log out</a></li>
                             {% endif %}
+                        {% if user.is_authenticated and request.user.userprofile.post != 'Admin' %}
+                            <li><a href="#">{{user.username}}</a></li>
+                            <li><a href="{% url 'logout' %}">Log out</a></li>
+                        {% endif %}
                             {% if not user.is_authenticated %}
                             <li><a href="/login">login</a></li>
                             {% endif %}
@@ -122,47 +127,7 @@
     </section>
     <!--end of header area-->
 
-   <!--   start about top area-->
-    <section class="about_top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="about_single_item">
-                        <div class="item_icon">
-                            <img src="img/item_icon.png" alt="item">
-                        </div>
-                        <div class="about_single_item_content">
-                            <h4>Same Day Delivery</h4>
-                            <p>When you have a time-critical delivery, we will find the solution, delivering your goods to the door anywhere in India as soon as possible.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="about_single_item">
-                        <div class="item_icon">
-                            <img src="img/item_icon.png" alt="item">
-                        </div>
-                        <div class="about_single_item_content">
-                            <h4>Priority Services</h4>
-                            <p>We offer a range of priority and overnight delivery options when your goods need to be delivered the next business day.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="about_single_item">
-                        <div class="item_icon">
-                            <img src="img/item_icon.png" alt="item">
-                        </div>
-                        <div class="about_single_item_content">
-                            <h4>International Courier Services</h4>
-                            <p>Delivering to over 80,000 destinations worldwide, PACK & SEND can support you with our extensive range of international service options.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--    end of about top area-->
+
     <!--    end of about top area-->
 <body >
 {% block content %}

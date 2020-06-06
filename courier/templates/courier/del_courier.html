@@ -1,0 +1,73 @@
+{% extends 'logged_nav_bar.html' %}
+
+    {% block content %}
+
+
+    <title>Delete courier</title>
+<!--    Courier details-->
+     <!--    start Courier Details content-->
+    <section class="contact-page-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2>Delete courier</h2>
+                        <h5> Courier delete conformation page</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <div class="about_us_content_title">
+                        <ul class="breadcrumbs">
+                            <li><a href="{%url 'success' %}">home</a></li>
+                            <li><a href="#">delete</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="" id="tracking">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="calculate_title">
+
+<table style="width:65%">
+  <tr>
+      <th><h3><b>Courier name</b></h3></th>
+    <td><h3><b>:</b>    {{ courier.courier_name }} </h3></td>
+  </tr>
+  <tr>
+      <th><h3><b>Courier sending branch </b></h3></th>
+    <td><h3> <b>:</b>    {{ courier.sending_branch_name }} </h3></td>
+  </tr>
+  <tr>
+      <th><h3><b>Courier receiving branch </b></h3></th>
+    <td><h3><b>:</b>    {{ courier.receiving_branch }} </h3></td>
+  </tr>
+                            <tr>
+                            <th><h3><b>Courier Sending person name</b></h3></th>
+                             <td><h3><b>:</b>    {{ courier.courier_sending_person }} </h3></td>
+                                 </tr>
+
+                            <tr>
+                                <th><h3><b>Courier delivery address</b></h3></th>
+    <td> <h3><b>:</b>   {{ courier.delivery_address }} </h3></td>
+  </tr>
+                            <tr>
+                                <th><h3><b>Courier Received at </b></h3></th>
+    <td><h3><b>:</b>   {{ courier.received_at }} </h3></td>
+                            </tr></table>
+<br>
+
+                        <h3>Are you sure you want to delete <b>{{courier.courier_name}}</b> ?</h3>
+
+                        <br>
+ <form method="POST" action="">
+     {% csrf_token %}
+    <button class="btn btn-info" type="submit">Confirm Delete</button>
+</form>
+
+                    </div></div></div></div></section></section>
+
+
+                            {% endblock %}

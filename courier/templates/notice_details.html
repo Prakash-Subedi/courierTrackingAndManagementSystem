@@ -1,0 +1,57 @@
+
+{% extends 'logged_nav_bar.html' %}
+{% load static %}
+    {% block content %}
+
+    <title>Notice details</title>
+    <section class="about_us_area" id="about">
+        <div class="container">
+            <div class="row page-title">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2>Notice Detail</h2>
+
+                        <h5>Detail notice</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <div class="about_us_content_title">
+                        <ul class="breadcrumbs">
+                            <li><a href="{% url 'success' %}">Home</a></li>
+                            <li><a href="#">Notice detail</a></li>
+                        </ul>
+                    </div>
+                </div></div>
+            <div class="row">
+                 {% if request.user.userprofile.post == 'Admin' %}
+                <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                    <form method="POST" action="">
+     {% csrf_token %}
+    <button class="btn btn-info" type="submit"> Delete</button>
+                        </form></div>
+                {% endif %}
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="about_us_content">
+                        <h2>{{ notice.topic }}</h2>
+
+                        <h4>Date: {{ notice.date.date }} </h4>
+                        <p>{{ notice.details|linebreaks }}</p>
+                                            </div>
+                </div>
+
+            </div>
+
+
+            <!--        end loop-->
+
+ <hr/>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=173310616629224&autoLogAppEvents=1"></script>
+<div class="fb-like" data-href="http://127.0.0.1:8000/notice_detail/{{ notice.id}}" data-width="50" data-layout="button_count" data-action="like" data-size="large" data-share="true"></div>
+        </div>
+<div class="container">
+<div class="fb-comments" data-href="http://127.0.0.1:8000/notice_detail/{{ notice.id}}" data-numposts="100" data-width=""></div>
+
+</div>
+</section>
+    {% endblock %}

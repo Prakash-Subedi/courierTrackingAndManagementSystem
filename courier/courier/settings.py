@@ -9,6 +9,14 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
+#for auto mail via gmail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'psmedianepal@gmail.com'
+EMAIL_HOST_PASSWORD = 'WebclubsITECH7415'
+EMAIL_PORT = 587
+
 
 import os
 
@@ -25,7 +33,7 @@ SECRET_KEY = 'pz3=p!h!2qubj-d@()4(m5kwu)olo57-*=57pcg@@z6bt)*aq='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition

@@ -16,7 +16,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-6 text-right">
                     <div class="about_us_content_title">
                         <ul class="breadcrumbs">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="{% url 'index' %}">Home</a></li>
                             <li><a href="#">Tracked data</a></li>
                         </ul>
                     </div>
@@ -82,7 +82,7 @@
 </section>
 
 <div class="alert alert-info" role="alert">
-            Return to <a href="{%url 'success' %}" >Home page</a> </div>
+            Return to <a href="{% url 'success' %}" >Home page</a> </div>
     </section>
 
 {% endblock %}

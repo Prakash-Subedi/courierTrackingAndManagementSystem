@@ -16,7 +16,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-6 text-right">
                     <div class="about_us_content_title">
                         <ul class="breadcrumbs">
-                            <li><a href="{% url 'success' %}">Home</a></li>
+                            <li><a href="{% url 'index' %}">Home</a></li>
                             <li><a href="#">Branches</a></li>
                         </ul>
                     </div>
@@ -135,18 +135,20 @@
                     <div class="single-footer">
                         <h2>More links</h2>
                         <ul class="list">
-                            <li><a href="#">about us.</a></li>
-                            <li><a href="#">We Accepts.</a></li>
-                            <li><a href="#">news latters</a></li>
-                            <li><a href="#">Pricing & plans</a></li>
-                            <li><a href="#">Calculate</a></li>
+                            <li><a href="{% url 'about' %}">about us.</a></li>
+                            <li><a href="{% url 'branches' %}">our branches</a></li>
+                            <li><a href="{% url 'contact' %}">contact us</a></li>
+                             {% if user.is_authenticated %}
+                            <li><a href="{% url 'notice' %}">Notices</a></li>
+                            <li><a href="{% url 'courier_detail_branch' %}">All pending couriers</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
                     <div class="single-footer">
                         <h2>We Accepts</h2>
-                        <a href="#"><img src="{% static 'img/about logo.png' %}" alt="#"></a>
+                        <a href="#"><img src="{% static 'img/we_acept.png' %}" alt="#"></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">

@@ -14,7 +14,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-6 text-right">
                     <div class="about_us_content_title">
                         <ul class="breadcrumbs">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="{% url 'index' %}">Home</a></li>
                             <li><a href="#">Tracked data</a></li>
                         </ul>
                     </div>
@@ -29,7 +29,8 @@
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">
                     <div class="single-about-us-bottom ">
 
-                        <table style="width:60%">
+                        <section class="about-us-bottom-area">
+                                <table style="width:60%">
   <tr>
       <th><h3><b>Courier name</b></h3></th>
     <td><h3><b>:</b>    {{ courier_details.courier_name }} </h3></td>
@@ -70,17 +71,31 @@
 
 </table>
                         <p> {{ courier_details.courier_description }} </p>
-                    </div>
-
+                        </section></div>
+  <div class="container">
+            <div class="row">
+                <div class="col-md-1 col-sm-1 col-xs-1 col-lg-1 ">
             {% if user.is_authenticated %}
                     <form method="get" action="{% url 'edit_courier' courier_details.courier_id %}">
     <button class="btn btn-info" type="submit">Edit</button>
                     </form>
+                </div>
+ <div class="col-md-1 col-sm-1 col-xs-1 col-lg-1 ">
+                    <form method="get" action="{% url 'del_courier' courier_details.courier_id %}">
+    <button class="btn btn-info" type="submit">Del</button>
+                    </form></div>
                    {% endif %}
+
                 </div>
 
 
-            </div> </div></section></section>
+            </div> </div>
+     </section></section>
+
+
+
+
+
 
 
 

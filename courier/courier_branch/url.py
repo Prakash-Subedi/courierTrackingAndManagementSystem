@@ -10,5 +10,6 @@ path('courier_search/', views.courier_search, name='courier_search'),
 path('search_data/', views.search_data, name='search_data'),
 path('courier_detail_branch/', views.courier_detail_branch, name='courier_detail_branch'),
 path('branches/', branch_view.branch, name='branches'),
+path('del_courier/<int:pk>', views.del_courier, name='del_courier'),
 
 ]
