@@ -1,12 +1,21 @@
 from django.forms import ModelForm
 
-from .models import CourierDetails, Branch
+from .models import CourierDetails, Branch, DayBook
 from django import forms
 
 class CourierForm(forms.ModelForm):
     class Meta:
         model = CourierDetails
         fields = '__all__'
+
+class DayBookForm(forms.ModelForm):
+    class Meta:
+        model = DayBook
+        fields = ["particular", "account_type", "amount", "branch"]
+
+
+
+
 
 
 class SearchCourier(forms.Form):

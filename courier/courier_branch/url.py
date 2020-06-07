@@ -11,5 +11,10 @@ path('search_data/', views.search_data, name='search_data'),
 path('courier_detail_branch/', views.courier_detail_branch, name='courier_detail_branch'),
 path('branches/', branch_view.branch, name='branches'),
 path('del_courier/<int:pk>', views.del_courier, name='del_courier'),
+path('daybook_form/', views.daybook_form, name='daybook_form'),
+path('financial_report/', views.financial_report, name='financial_report'),
+path('edit_daybook/<int:pk>', views.edit_daybook, name='edit_daybook'),
+path('del_daybook/<int:pk>', views.del_daybook, name='del_daybook'),
+
 
 ]

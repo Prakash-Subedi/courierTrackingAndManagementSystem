@@ -1,0 +1,113 @@
+{% extends 'logged_nav_bar.html' %}
+
+{% load widget_tweaks %}
+    {% block content %}
+
+<style>
+table2 {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+</style>
+    <title>Daybook form</title>
+
+    <!--    start contact page content-->
+    <section class="contact-page-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2>Daybook form</h2>
+                        <h5>Fill the daybook</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <div class="about_us_content_title">
+                        <ul class="breadcrumbs">
+                            <li><a href="{% url 'index' %}">home</a></li>
+                            <li><a href="#">Daybook form</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-6 col-sm-6">
+                    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+     <div class="alert alert-info" role="alert">{{ message }} Added!!</div>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+                    <div class="contact-form">
+                        {% if form.error %}
+  <div class="alert alert-danger" role="alert"> There is something wrong with what you entered.</div>
+  {% endif %}
+                        <h2 class="contact_page_headings">Fill the particulars details, you want to add</h2>
+                        <form method="POST">
+                              {% csrf_token %}
+
+                            <b>{{ form.particular.label}}</b>{% render_field form.particular placeholder="particular name" %}
+                            <b>{{ form.account_type.label}}</b>{% render_field form.account_type  class="select form-control" %}<br>
+                            <b>{{ form.amount.label}}</b>{% render_field form.amount placeholder="Amount" %}
+                            {% render_field form.branch class="hidden" value=request.user.userprofile.branch %}
+
+                            <input class= "btn btn-outline-info"type="submit">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-md-offset-1 col-sm-6">
+<h4>Particular added today</h4>
+<table class="table2">
+    <thead class="thead-dark">
+      <tr>
+        <th>Particular</th>
+        <th>Amount</th>
+          <th>Account type</th>
+          <th>Edit</th>
+          <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for datas in data %}
+      <tr>
+        <td>{{ datas.particular }}</td>
+        <td>{{ datas.amount }}</td>
+          <td>{{ datas.account_type }}</td>
+          <td>
+            <form method="get" action="{% url 'edit_daybook' datas.id %}">
+                {% csrf_token %}
+                    <button class="btn btn-info" type="submit">Edit</button>
+</form>          </td>
+           <td>
+            <form method="get" action="{% url 'del_daybook' datas.id %}">
+{% csrf_token %}
+                    <button class="btn btn-info" type="submit"> Delete</button>
+</form>          </td>
+           <td>
+
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+     {% endblock %}

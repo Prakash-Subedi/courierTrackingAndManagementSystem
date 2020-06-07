@@ -3,6 +3,7 @@ from django.db.models import DateTimeField
 from hashid_field import HashidAutoField    # pip install django-hashid-field
 from phone_field import PhoneField   # pip install django-phone-field
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -74,6 +75,30 @@ class Comments(models.Model):
 
     def __str__(self):
         return self.name
+
+class DayBook(models.Model):
+
+    ACCOUNT_CHOICES = (
+        ("Expenses", "Expenses"),  #outgoing
+        ("Income", "Income"),  #incoming
+    )
+    particular = models.CharField(max_length=30,blank=False,null=False,)
+    date = models.DateTimeField(auto_now_add=True)
+    account_type = models.CharField(choices=ACCOUNT_CHOICES, blank=False, max_length=9)
+    amount = models.DecimalField(max_digits=12,decimal_places=2)
+    branch = models.CharField(max_length=30,blank=False, null=False,)
+
+    def __str__(self):
+        return self.particular
+
+    # def pre_save(self, model_instance, add):
+    #     if self.auto_now or (self.auto_now_add and add):
+    #         value = timezone.now()
+    #         setattr(model_instance, self.attname, value)
+    #         return value
+    #     else:
+    #         return super(DateTimeField, self).pre_save(model_instance, add)
+
 
 
 

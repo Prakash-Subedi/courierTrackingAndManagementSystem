@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_cleanup.apps.CleanupConfig',  # cleaning media file while changing image or deleting image
-                                            # in database: pip install django-cleanup 
+                                            # in database: pip install django-cleanup
+    'widget_tweaks' # pip install django-widget-tweaks
+
 
 ]
 

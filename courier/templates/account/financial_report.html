@@ -1,0 +1,217 @@
+{% extends 'logged_nav_bar.html' %}
+
+    {% block content %}
+
+
+    <title>Courier details</title>
+<!--    Courier details-->
+     <!--    start Courier Details content-->
+    <section class="contact-page-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2>Financial Report </h2>
+                        <h5>Financial report of {{ branch }}</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <div class="about_us_content_title">
+                        <ul class="breadcrumbs">
+                            <li><a href="{% url 'success' %}">home</a></li>
+                            <li><a href="#">Financial report</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--    Table from database-->
+     <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 col-lg-6 ">
+                    <div class="single-about-us-bottom ">
+                        <h4>Total Income other then courier(₹) :</h4>
+                          <h1 class="counter">{{ total_income.amount__sum }}</h1>
+                        <h3>Income from courier is ₹ {{ income_courier.delivery_cost__sum }}</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 col-lg-6">
+                    <div class="single-about-us-bottom">
+                        <h4>Total expenses (₹):</h4>
+                         <h1 class="counter">{{ total_expences.amount__sum }}</h1>
+                        <p> ...  </p>
+                    </div>
+                </div> </div> </div> </section>
+
+
+</section>
+<!--search area start-->
+<section class="">
+<form method="GET" action="/financial_report/">
+                            {% csrf_token %}
+<div class="container">
+
+
+<div class="calculate_form">
+ <div class="row">
+
+
+<div class="col-md-4 col-sm-4 col-xs-4 col-lg-4 ">
+                            <div class="single_calculate">
+                                <label>Branch</label>
+                                <div class="calculate_option padding-riht">
+
+                                    <select name="Branch">
+                                    {% for branch in office %}
+                                        <option value="{{ branch }}" >{{ branch.branch_name }}</option>
+                                    {% endfor %}
+                                    </select>
+                                </div></div></div>
+       <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 ">
+       <div class="single_calculate">
+                                <input type="date" name="date_from">
+                                <label>Date From</label>
+      </div></div></div>
+    <div class="row">
+         <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 ">
+    <div class="single_calculate">
+                                <input type="date" name="date_to">
+                                <label>Date To</label>
+    </div></div></div>
+
+
+                            <div class="calculat-button">
+                                <input type="submit" class="calulate" value="Search Courier">
+                            </div></div>
+
+
+</div></div></div></form></section><br><br>
+
+
+<!--end search area-->
+<section class=" ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-6 col-xs-6 text-left">
+                    <div class="about_us_content_title">
+                        <h2>All account Details of {{ branch }} branch</h2>
+                        <h5>All the information from {{date_from.date }} to {{ date_to.date }} </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+<style>
+table2 {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+</style>
+
+<div class="container">
+    <div class="row">
+<div class="container col-md-6 col-sm-6 col-xs-6">
+  <h3>Table of Income</h3>
+  <p></p>
+  <div class="table-responsive">
+  <table class="table2">
+    <thead class="thead-dark">
+      <tr>
+        <th>Particular</th>
+        <th>Transaction Date</th>
+        <th>Amount</th>
+          <th>Edit</th>
+          <th>Delete</th>
+<!--          <th>Branch</th>-->
+               </tr>
+    </thead>
+    <tbody>
+    {% for data in income %}
+      <tr>
+        <td>{{ data.particular }}</td>
+        <td>{{ data.date.date }}</td>
+        <td>{{ data.amount }}</td>
+          <td>
+            <form method="get" action="{% url 'edit_daybook' data.id %}">
+                    <button class="btn btn-info" type="submit">Edit</button>
+</form>          </td>
+          <td>
+            <form method="get" action="{% url 'del_daybook' data.id %}">
+{% csrf_token %}
+                    <button class="btn btn-info" type="submit"> Delete</button>
+</form>          </td>
+<!--          <td>{{ data.branch }}</td>-->
+              </tr>
+
+
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!--<div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-4 col-sm-3 col-xs-12 col-lg-4">-->
+
+<!--                </div>-->
+<!--                <div class="col-md-2 col-sm-3 col-xs-12 col-lg-2">-->
+<!--<br><br><br><br><br>-->
+<!--                </div>-->
+<!--                <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">-->
+
+<!--                </div>-->
+<!--                <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--next table-->
+
+<div class="container col-md-6 col-sm-6 col-xs-6">
+  <h3>Table of expenses</h3>
+  <p></p>
+  <div class="table-responsive">
+  <table class="table2">
+    <thead class="thead-dark">
+      <tr>
+        <th>Particular</th>
+        <th>Transaction Date</th>
+        <th>Amount</th>
+          <th>Edit</th>
+           <th>Delete</th>
+             </tr>
+    </thead>
+    <tbody>
+   {% for data in expences %}
+      <tr>
+        <td>{{ data.particular }}</td>
+        <td>{{ data.date.date }}</td>
+        <td>{{ data.amount }}</td>
+          <td>
+            <form method="get" action="{% url 'edit_daybook' data.id %}">
+                    <button class="btn btn-info" type="submit">Edit</button>
+</form>          </td>
+          <td>
+            <form method="get" action="{% url 'del_daybook' data.id %}">
+{% csrf_token %}
+                    <button class="btn btn-info" type="submit"> Delete</button>
+</form>          </td>
+              </tr>
+
+
+    {% endfor %}
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+    </div></div></section></section>
+    {% endblock %}

@@ -55,7 +55,18 @@
 
                                      <li><a href="{% url 'index' %}">Home</a></li>
                                     <li><a href="{% url 'about' %}">about</a></li>
-                                    <li><a href="index.html">Service</a>
+                                    {% if user.is_authenticated and request.user.userprofile.post != 'Staff' %}
+                                    <li><a href="{% url 'financial_report' %}">Finance</a>
+                                       <ul class="dropdownMenu">
+                                           <li><a href="{% url 'daybook_form' %}">Day book</a></li>
+                                       </ul>
+                                    </li>
+                                    {% endif %}
+                                    {% if user.is_authenticated and request.user.userprofile.post == 'Staff' %}
+                                    <li><a href="{% url 'daybook_form' %}">Day book</a>
+                                                                           </li>
+                                    {% endif %}
+                                    <li><a href="#">Service</a>
                                        <ul class="dropdownMenu">
                                            {% ifnotequal request.user.userprofile.post  "Staff" %}
                                            <li><a href="{% url 'register' %}">Add Staff</a></li>
