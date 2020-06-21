@@ -19,7 +19,7 @@
                     <div class="about_us_content_title">
                         <ul class="breadcrumbs">
                             <li><a href="{% url 'success' %}">home</a></li>
-                            <li><a href="#">contact</a></li>
+                            <li><a href="#">Courier details</a></li>
                         </ul>
                     </div>
                 </div>
@@ -87,7 +87,8 @@ th, td {
         <th>Delivery address</th>
         <th>Tracking ID</th>
          <th>Status</th>
-          <th>Action</th>
+          <th>Edit</th>
+          <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -105,11 +106,11 @@ th, td {
           <td>
             <form method="get" action="{% url 'edit_courier' courier.courier_id %}">
     <button class="btn btn-info" type="submit">Edit</button>
-</form>
-
-
-
-          </td>
+</form>          </td>
+          <td>
+            <form method="get" action="{% url 'del_courier' courier.courier_id %}">
+                    <button class="btn btn-info" type="submit">Del</button>
+</form>          </td>
       </tr>
 
 
